@@ -109,5 +109,36 @@ class PatrolBoat(Ship):
         self.orientation = orientation
 
 
+def set_position(ship):
+    """
+    Sets the cooridinates for each ship
+    """
+    letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
+                        "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
+
+    while True:
+        column = input("Choose a column from A-J: ").upper()
+        if column in "ABCDEFGHIJ" and len(column) == 1:
+            column = letter_to_number[column]
+            break
+        else:
+            print("Invalid letter.")
+
+    while True:
+        try:
+            row = int(input("Choose a row from 1-10: "))
+            if row >= 1 and row <= 10:
+                row -= 1
+                break
+            else:
+                print("Invalid number.")
+        except ValueError:
+            print("Input must be a number 1-10.")
+
+    ship.position = (column, row)
+    return ship.position
+
+
 start_game()
 create_user()
+print(set_position(Carrier))
