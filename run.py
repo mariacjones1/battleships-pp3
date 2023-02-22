@@ -51,5 +51,58 @@ def create_user():
     return username
 
 
+class Ship:
+    """
+    Ship class
+    """
+    def __init__(self, length):
+        self.length = length
+
+
+class Carrier(Ship):
+    """
+    Carrier class
+    """
+    def __init__(self, position):
+        Ship.__init__(self, 5)
+        self.position = position
+        
+
+class Battleship(Ship):
+    """
+    Battleship class
+    """
+    def __init__(self, position):
+        Ship.__init__(self, 4)
+        self.position = position
+        
+
+class Destroyer(Ship):
+    """
+    Destroyer class
+    """
+    def __init__(self, position):
+        Ship.__init__(self, 3)
+        self.position = position
+        
+
+class Submarine(Ship):
+    """
+    Submarine class
+    """
+    def __init__(self, position):
+        Ship.__init__(self, 3)
+        self.position = position
+        
+
+class PatrolBoat(Ship):
+    """
+    Patrol Boat class
+    """
+    def __init__(self, position):
+        Ship.__init__(self, 2)
+        self.position = position
+
+
 start_game()
 create_user()
