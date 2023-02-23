@@ -63,10 +63,10 @@ class Carrier(Ship):
     """
     Carrier class
     """
-    def __init__(self, position, orientation):
+    def __init__(self, position):
         Ship.__init__(self, 5)
         self.position = position
-        self.orientation = orientation
+        # self.orientation = orientation
 
 
 class Battleship(Ship):
@@ -109,12 +109,14 @@ class PatrolBoat(Ship):
         self.orientation = orientation
 
 
-def set_position(ship):
+def set_position(ship, length):
     """
     Sets the cooridinates for each ship
     """
     letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
                         "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
+
+    ship.position = []
 
     while True:
         column = input("Choose a column from A-J: ").upper()
@@ -135,10 +137,29 @@ def set_position(ship):
         except ValueError:
             print("Input must be a number 1-10.")
 
-    ship.position = (column, row)
+    while True:
+        print("Now choose the ship's orientation:")
+        ship.orientation = input("Horizontal (H) or vertical (V)? ").upper()
+        if ship.orientation == "H":
+            while len(ship.position) <= length:
+                ship.position.append((column, row))
+                column += 1
+            break
+        elif ship.orientation == "V":
+            while len(ship.position) <= length:
+                ship.position.append((column, row))
+                row += 1
+            break
+        else:
+            print("Please input only 'H' or 'V' for orientation")
+
     return ship.position
 
 
 start_game()
 create_user()
-print(set_position(Carrier))
+set_position(Carrier, 5)
+set_position(Battleship, 4)
+set_position(Destroyer, 3)
+set_position(Submarine, 3)
+set_position(PatrolBoat, 2)
