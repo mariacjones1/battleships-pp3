@@ -58,108 +58,73 @@ class Ship:
     def __init__(self, length):
         self.length = length
 
+    def set_position(self):
+        """
+        Sets the cooridinates for each ship
+        """
+        letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
+                            "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
 
-class Carrier(Ship):
-    """
-    Carrier class
-    """
-    def __init__(self, position):
-        Ship.__init__(self, 5)
-        self.position = position
-        # self.orientation = orientation
+        position = []
+
+        while not position:
+            print(f"Set the coordinates for the {self}")
+            while True:
+                column = input("Choose a column from A-J: ").upper()
+                if column in "ABCDEFGHIJ" and len(column) == 1:
+                    column = letter_to_number[column]
+                    break
+                else:
+                    print("Invalid letter.")
+
+            while True:
+                try:
+                    row = int(input("Choose a row from 1-10: "))
+                    if row >= 1 and row <= 10:
+                        row -= 1
+                        break
+                    else:
+                        print("Invalid number.")
+                except ValueError:
+                    print("Input must be a number 1-10.")
+
+            while True:
+                print("Now choose the ship's orientation:"
+                      "Horizontal ('H') or vertical ('V')?")
+                orientation = input("Position: ").upper()
+                if orientation == "H":
+                    if (column + (self.length - 1)) > 9:
+                        print("Ship doesn't fit")
+                    else:
+                        while len(position) < self.length:
+                            position.append((column, row))
+                            column += 1
+                    break
+                elif orientation == "V":
+                    if (row + (self.length - 1)) > 9:
+                        print("Ship doesn't fit")
+                    else:
+                        while len(position) < self.length:
+                            position.append((column, row))
+                            row += 1
+                    break
+                else:
+                    print("Please input only 'H' or 'V' for orientation")
+
+            return position
 
 
-class Battleship(Ship):
-    """
-    Battleship class
-    """
-    def __init__(self, position, orientation):
-        Ship.__init__(self, 4)
-        self.position = position
-        self.orientation = orientation
-
-
-class Destroyer(Ship):
-    """
-    Destroyer class
-    """
-    def __init__(self, position, orientation):
-        Ship.__init__(self, 3)
-        self.position = position
-        self.orientation = orientation
-
-
-class Submarine(Ship):
-    """
-    Submarine class
-    """
-    def __init__(self, position, orientation):
-        Ship.__init__(self, 3)
-        self.position = position
-        self.orientation = orientation
-
-
-class PatrolBoat(Ship):
-    """
-    Patrol Boat class
-    """
-    def __init__(self, position, orientation):
-        Ship.__init__(self, 2)
-        self.position = position
-        self.orientation = orientation
-
-
-def set_position(ship, length):
-    """
-    Sets the cooridinates for each ship
-    """
-    letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
-                        "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
-
-    ship.position = []
-
-    while True:
-        column = input("Choose a column from A-J: ").upper()
-        if column in "ABCDEFGHIJ" and len(column) == 1:
-            column = letter_to_number[column]
-            break
-        else:
-            print("Invalid letter.")
-
-    while True:
-        try:
-            row = int(input("Choose a row from 1-10: "))
-            if row >= 1 and row <= 10:
-                row -= 1
-                break
-            else:
-                print("Invalid number.")
-        except ValueError:
-            print("Input must be a number 1-10.")
-
-    while True:
-        print("Now choose the ship's orientation:")
-        ship.orientation = input("Horizontal (H) or vertical (V)? ").upper()
-        if ship.orientation == "H":
-            while len(ship.position) <= length:
-                ship.position.append((column, row))
-                column += 1
-            break
-        elif ship.orientation == "V":
-            while len(ship.position) <= length:
-                ship.position.append((column, row))
-                row += 1
-            break
-        else:
-            print("Please input only 'H' or 'V' for orientation")
-
-    return ship.position
+carrier = Ship(5)
+battleship = Ship(4)
+destroyer = Ship(3)
+submarine = Ship(3)
+patrol_boat = Ship(2)
 
 
 start_game()
 create_user()
-set_position(Carrier, 5)
-set_position(Battleship, 4)
-set_position(Destroyer, 3)
-set_position(Submarine, 3)
-set_position(PatrolBoat, 2)
+print(carrier.set_position())
+battleship.set_position()
+destroyer.set_position()
+submarine.set_position()
+patrol_boat.set_position()
