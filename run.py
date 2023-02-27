@@ -55,6 +55,8 @@ class Ship:
     """
     Ship class
     """
+    ship_coordinates = []
+
     def __init__(self, name, length):
         self.name = name
         self.length = length
@@ -112,7 +114,8 @@ class Ship:
                 else:
                     print("Please input only 'H' or 'V' for orientation")
 
-            return self.position
+            self.ship_coordinates.append(self.position)
+            return self.ship_coordinates
 
 
 carrier = Ship("Carrier", 5)
@@ -125,7 +128,7 @@ patrol_boat = Ship("Patrol Boat", 2)
 start_game()
 create_user()
 print(carrier.set_position())
-battleship.set_position()
+print(battleship.set_position())
 destroyer.set_position()
 submarine.set_position()
 patrol_boat.set_position()
