@@ -65,7 +65,7 @@ class Ship:
 
     def set_position(self):
         """
-        Sets the cooridinates for each ship
+        Sets the coordinates for each ship
         """
         letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
                             "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
@@ -97,7 +97,7 @@ class Ship:
                 self.orientation = input().upper()
                 if self.orientation == "H":
                     if (column + (self.length - 1)) > 9:
-                        print("Ship doesn't fit")
+                        print("Ship doesn't fit; please try again.")
                     else:
                         while len(self.position) < self.length:
                             self.position.append((column, row))
@@ -105,7 +105,7 @@ class Ship:
                     break
                 elif self.orientation == "V":
                     if (row + (self.length - 1)) > 9:
-                        print("Ship doesn't fit")
+                        print("Ship doesn't fit; please try again.")
                     else:
                         while len(self.position) < self.length:
                             self.position.append((column, row))
@@ -114,8 +114,17 @@ class Ship:
                 else:
                     print("Please input only 'H' or 'V' for orientation")
 
-            self.ship_coordinates.append(self.position)
-            return self.ship_coordinates
+            print(self.position)
+            print(Ship.ship_coordinates)
+            print(Ship.ship_coordinates + self.position)
+            print(set(Ship.ship_coordinates + self.position))
+            if (len(Ship.ship_coordinates + self.position) !=
+                    len(set(Ship.ship_coordinates + self.position))):
+                self.position = []
+                print("Ship doesn't fit; please try again.")
+            else:
+                Ship.ship_coordinates = Ship.ship_coordinates + self.position
+                return Ship.ship_coordinates
 
 
 carrier = Ship("Carrier", 5)
@@ -129,6 +138,6 @@ start_game()
 create_user()
 print(carrier.set_position())
 print(battleship.set_position())
-destroyer.set_position()
-submarine.set_position()
-patrol_boat.set_position()
+print(destroyer.set_position())
+print(submarine.set_position())
+print(patrol_boat.set_position())
