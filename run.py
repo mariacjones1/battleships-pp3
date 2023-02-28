@@ -97,7 +97,7 @@ class Ship:
                 self.orientation = input().upper()
                 if self.orientation == "H":
                     if (column + (self.length - 1)) > 9:
-                        print("Ship doesn't fit; please try again.")
+                        break
                     else:
                         while len(self.position) < self.length:
                             self.position.append((column, row))
@@ -105,7 +105,7 @@ class Ship:
                     break
                 elif self.orientation == "V":
                     if (row + (self.length - 1)) > 9:
-                        print("Ship doesn't fit; please try again.")
+                        break
                     else:
                         while len(self.position) < self.length:
                             self.position.append((column, row))
@@ -121,6 +121,8 @@ class Ship:
             if (len(Ship.ship_coordinates + self.position) !=
                     len(set(Ship.ship_coordinates + self.position))):
                 self.position = []
+                print("Ship doesn't fit; please try again.")
+            elif not self.position:
                 print("Ship doesn't fit; please try again.")
             else:
                 Ship.ship_coordinates = Ship.ship_coordinates + self.position
