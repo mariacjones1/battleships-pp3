@@ -55,7 +55,7 @@ class Ship:
     """
     Ship class
     """
-    ship_coordinates = []
+    user_coordinates = []
 
     def __init__(self, name, length):
         self.name = name
@@ -115,18 +115,18 @@ class Ship:
                     print("Please input only 'H' or 'V' for orientation")
 
             print(self.position)
-            print(Ship.ship_coordinates)
-            print(Ship.ship_coordinates + self.position)
-            print(set(Ship.ship_coordinates + self.position))
-            if (len(Ship.ship_coordinates + self.position) !=
-                    len(set(Ship.ship_coordinates + self.position))):
+            print(Ship.user_coordinates)
+            print(Ship.user_coordinates + self.position)
+            print(set(Ship.user_coordinates + self.position))
+            if (len(Ship.user_coordinates + self.position) !=
+                    len(set(Ship.user_coordinates + self.position))):
                 self.position = []
                 print("Ship doesn't fit; please try again.")
             elif not self.position:
                 print("Ship doesn't fit; please try again.")
             else:
-                Ship.ship_coordinates = Ship.ship_coordinates + self.position
-                return Ship.ship_coordinates
+                Ship.user_coordinates = Ship.user_coordinates + self.position
+                return Ship.user_coordinates
 
 
 def print_board(coordinates):
@@ -154,8 +154,8 @@ def print_board(coordinates):
              [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9), (6, 9), (7, 9),
               (8, 9), (9, 9)]]
 
-    print("   A B C D E F G H I J \n"
-          "   --------------------")
+    print("  | A | B | C | D | E | F | G | H | I | J |\n"
+          "   ----------------------------------------")
     row_number = 1
     for row in board:
         if row_number < 10:
@@ -164,9 +164,9 @@ def print_board(coordinates):
             print(str(row_number) + "|", end="")
         for i in row:
             if i in coordinates:
-                print(" @", end="")
+                print(" ⬤ |", end="")
             else:
-                print(" O", end="")
+                print(" ○ |", end="")
         print("\n")
         row_number += 1
 
@@ -180,10 +180,14 @@ patrol_boat = Ship("Patrol Boat", 2)
 
 start_game()
 create_user()
-print_board(Ship.ship_coordinates)
+print_board(Ship.user_coordinates)
 print(carrier.set_position())
-print_board(Ship.ship_coordinates)
+print_board(Ship.user_coordinates)
 print(battleship.set_position())
+print_board(Ship.user_coordinates)
 print(destroyer.set_position())
+print_board(Ship.user_coordinates)
 print(submarine.set_position())
+print_board(Ship.user_coordinates)
 print(patrol_boat.set_position())
+print_board(Ship.user_coordinates)
