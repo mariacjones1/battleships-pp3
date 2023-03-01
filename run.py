@@ -1,3 +1,6 @@
+import random
+
+
 def start_game():
     """
     Prints welcome message and instructions,
@@ -6,8 +9,8 @@ def start_game():
     print("Welcome to Battleships!\n"
           "The aim of the game is to find and sink your opponent's"
           "battleships before they sink yours.\n"
-          "Choose the location for each of your ships, or generate"
-          "random positions, then take it in turns to guess"
+          "Choose the location for each of your ships, while the computer"
+          "generates random positions, then take it in turns to guess"
           "where each other's ships are.\n"
           "Ready to play?")
 
@@ -56,6 +59,7 @@ class Ship:
     Ship class
     """
     user_coordinates = []
+    cpu_coordinates = []
 
     def __init__(self, name, length):
         self.name = name
@@ -65,13 +69,14 @@ class Ship:
 
     def set_position(self):
         """
-        Sets the coordinates for each ship
+        Allows the user to set the coordinates for each ship
         """
         letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
                             "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
 
         while not self.position:
-            print(f"Set the coordinates for the {self.name}")
+            print(f"Set the coordinates for the {self.name} "
+                  f"(length = {self.length})")
             while True:
                 column = input("Choose a column from A-J: ").upper()
                 if column in "ABCDEFGHIJ" and len(column) == 1:
@@ -96,7 +101,7 @@ class Ship:
                       "Horizontal ('H') or vertical ('V')?")
                 self.orientation = input().upper()
                 if self.orientation == "H":
-                    if (column + (self.length - 1)) > 9:
+                    if column + self.length > 10:
                         break
                     else:
                         while len(self.position) < self.length:
@@ -104,7 +109,7 @@ class Ship:
                             column += 1
                     break
                 elif self.orientation == "V":
-                    if (row + (self.length - 1)) > 9:
+                    if row + self.length > 10:
                         break
                     else:
                         while len(self.position) < self.length:
@@ -114,10 +119,6 @@ class Ship:
                 else:
                     print("Please input only 'H' or 'V' for orientation")
 
-            print(self.position)
-            print(Ship.user_coordinates)
-            print(Ship.user_coordinates + self.position)
-            print(set(Ship.user_coordinates + self.position))
             if (len(Ship.user_coordinates + self.position) !=
                     len(set(Ship.user_coordinates + self.position))):
                 self.position = []
@@ -127,6 +128,41 @@ class Ship:
             else:
                 Ship.user_coordinates = Ship.user_coordinates + self.position
                 return Ship.user_coordinates
+
+    def random_position(self):
+        """
+        Generates random positions for each ship
+        """
+        orientation = ["H", "V"]
+        print(f"Setting computer coordinates for {self.name}...")
+        while not self.position:
+            column = random.randint(0, 9)
+            row = random.randint(0, 9)
+            self.orientation = random.choice(orientation)
+
+            if self.orientation == "H":
+                if column + self.length > 10:
+                    pass
+                else:
+                    while len(self.position) < self.length:
+                        self.position.append((column, row))
+                        column += 1
+            elif self.orientation == "V":
+                if row + self.length > 10:
+                    pass
+                else:
+                    while len(self.position) < self.length:
+                        self.position.append((column, row))
+                        row += 1
+
+            if (len(Ship.cpu_coordinates + self.position) !=
+                    len(set(Ship.cpu_coordinates + self.position))):
+                self.position = []
+            elif not self.position:
+                self.position = []
+            else:
+                Ship.cpu_coordinates = Ship.cpu_coordinates + self.position
+                return Ship.cpu_coordinates
 
 
 def print_board(coordinates):
@@ -171,23 +207,38 @@ def print_board(coordinates):
         row_number += 1
 
 
-carrier = Ship("Carrier", 5)
-battleship = Ship("Battleship", 4)
-destroyer = Ship("Destroyer", 3)
-submarine = Ship("Submarine", 3)
-patrol_boat = Ship("Patrol Boat", 2)
+user_carrier = Ship("Carrier", 5)
+user_battleship = Ship("Battleship", 4)
+user_destroyer = Ship("Destroyer", 3)
+user_submarine = Ship("Submarine", 3)
+user_patrol_boat = Ship("Patrol Boat", 2)
+
+cpu_carrier = Ship("Carrier", 5)
+cpu_battleship = Ship("Battleship", 4)
+cpu_destroyer = Ship("Destroyer", 3)
+cpu_submarine = Ship("Submarine", 3)
+cpu_patrol_boat = Ship("Patrol Boat", 2)
 
 
 start_game()
 create_user()
 print_board(Ship.user_coordinates)
-print(carrier.set_position())
+user_carrier.set_position()
 print_board(Ship.user_coordinates)
-print(battleship.set_position())
+user_battleship.set_position()
 print_board(Ship.user_coordinates)
-print(destroyer.set_position())
+user_destroyer.set_position()
 print_board(Ship.user_coordinates)
-print(submarine.set_position())
+user_submarine.set_position()
 print_board(Ship.user_coordinates)
-print(patrol_boat.set_position())
+user_patrol_boat.set_position()
+print_board(Ship.user_coordinates)
+cpu_carrier.random_position()
+cpu_battleship.random_position()
+cpu_destroyer.random_position()
+cpu_submarine.random_position()
+cpu_patrol_boat.random_position()
+print("CPU board:")
+print_board(Ship.cpu_coordinates)
+print("User board:")
 print_board(Ship.user_coordinates)
