@@ -152,14 +152,23 @@ def print_board(coordinates):
              [(0, 8), (1, 8), (2, 8), (3, 8), (4, 8), (5, 8), (6, 8), (7, 8),
               (8, 8), (9, 8)],
              [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9), (6, 9), (7, 9),
-              (8, 9), (9, 9)],]
+              (8, 9), (9, 9)]]
 
+    print("   A B C D E F G H I J \n"
+          "   --------------------")
+    row_number = 1
     for row in board:
-        for coordinate in row:
-            if coordinate in coordinates:
-                print("@")
+        if row_number < 10:
+            print(str(row_number) + " |", end="")
+        else:
+            print(str(row_number) + "|", end="")
+        for i in row:
+            if i in coordinates:
+                print(" @", end="")
             else:
-                print("O")
+                print(" O", end="")
+        print("\n")
+        row_number += 1
 
 
 carrier = Ship("Carrier", 5)
@@ -171,6 +180,7 @@ patrol_boat = Ship("Patrol Boat", 2)
 
 start_game()
 create_user()
+print_board(Ship.ship_coordinates)
 print(carrier.set_position())
 print_board(Ship.ship_coordinates)
 print(battleship.set_position())
