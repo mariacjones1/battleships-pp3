@@ -220,25 +220,40 @@ cpu_submarine = Ship("Submarine", 3)
 cpu_patrol_boat = Ship("Patrol Boat", 2)
 
 
-start_game()
-create_user()
-print_board(Ship.user_coordinates)
-user_carrier.set_position()
-print_board(Ship.user_coordinates)
-user_battleship.set_position()
-print_board(Ship.user_coordinates)
-user_destroyer.set_position()
-print_board(Ship.user_coordinates)
-user_submarine.set_position()
-print_board(Ship.user_coordinates)
-user_patrol_boat.set_position()
-print_board(Ship.user_coordinates)
-cpu_carrier.random_position()
-cpu_battleship.random_position()
-cpu_destroyer.random_position()
-cpu_submarine.random_position()
-cpu_patrol_boat.random_position()
-print("CPU board:")
-print_board(Ship.cpu_coordinates)
-print("User board:")
-print_board(Ship.user_coordinates)
+def main():
+    """
+    Runs main game functions
+    """
+    # Start game and create username
+    start_game()
+    username = create_user()
+
+    # User sets ship positions
+    print(f"{username}'s board:")
+    print_board(Ship.user_coordinates)
+    user_carrier.set_position()
+    print_board(Ship.user_coordinates)
+    user_battleship.set_position()
+    print_board(Ship.user_coordinates)
+    user_destroyer.set_position()
+    print_board(Ship.user_coordinates)
+    user_submarine.set_position()
+    print_board(Ship.user_coordinates)
+    user_patrol_boat.set_position()
+    print_board(Ship.user_coordinates)
+
+    # Computer randomly generates ship positions
+    cpu_carrier.random_position()
+    cpu_battleship.random_position()
+    cpu_destroyer.random_position()
+    cpu_submarine.random_position()
+    cpu_patrol_boat.random_position()
+
+    # Start gameplay
+    print("CPU board:")
+    print_board(Ship.cpu_coordinates)
+    print(f"{username}'s board:")
+    print_board(Ship.user_coordinates)
+
+
+main()
