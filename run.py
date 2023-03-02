@@ -202,6 +202,21 @@ def guess_coordinates(guessed):
         guessed.append(guess)
 
 
+def guess_random_coordinates(guessed):
+    """
+    Generates random coordinates for computer guesses and makes sure
+    coordinate has not already been guessed
+    """
+    while True:
+        guess_column = random.randint(0, 9)
+        guess_row = random.randint(0, 9)
+        guess = (guess_column, guess_row)
+        if guess in guessed:
+            break
+        else:
+            guessed.append(guess)
+
+
 def print_user_board(board, coordinates, guessed):
     """
     Prints user board showing set coordinates and
@@ -293,18 +308,18 @@ def main():
               (8, 8), (9, 8)],
              [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9), (6, 9), (7, 9),
               (8, 9), (9, 9)]]
-    # print(f"{username}'s board:")
-    # print_board(board, Ship.user_coordinates, cpu_guessed)
-    # user_carrier.set_position()
-    # print_board(board, Ship.user_coordinates, cpu_guessed)
-    # user_battleship.set_position()
-    # print_board(board, Ship.user_coordinates, cpu_guessed)
-    # user_destroyer.set_position()
-    # print_board(board, Ship.user_coordinates, cpu_guessed)
-    # user_submarine.set_position()
-    # print_board(board, Ship.user_coordinates, cpu_guessed)
-    # user_patrol_boat.set_position()
-    # print_board(board, Ship.user_coordinates, cpu_guessed)
+    print(f"{username}'s board:")
+    print_user_board(board, Ship.user_coordinates, cpu_guessed)
+    user_carrier.set_position()
+    print_user_board(board, Ship.user_coordinates, cpu_guessed)
+    user_battleship.set_position()
+    print_user_board(board, Ship.user_coordinates, cpu_guessed)
+    user_destroyer.set_position()
+    print_user_board(board, Ship.user_coordinates, cpu_guessed)
+    user_submarine.set_position()
+    print_user_board(board, Ship.user_coordinates, cpu_guessed)
+    user_patrol_boat.set_position()
+    print_user_board(board, Ship.user_coordinates, cpu_guessed)
 
     # Randomly generate computer ship positions
     cpu_carrier.random_position()
@@ -318,9 +333,15 @@ def main():
     winner = False
 
     while winner is False:
+        # User guesses
         guess_coordinates(user_guessed)
-        print(user_guessed)
+        print("Computer board:")
         print_cpu_board(board, Ship.cpu_coordinates, user_guessed)
+
+        # Computer guesses
+        guess_random_coordinates(cpu_guessed)
+        print(f"{username}'s board:")
+        print_user_board(board, Ship.user_coordinates, cpu_guessed)
 
 
 main()
