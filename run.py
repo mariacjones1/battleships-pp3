@@ -214,7 +214,7 @@ def guess_random_coordinates(guessed):
         if guess in guessed:
             break
         else:
-            guessed.append(guess)
+            return guessed.append(guess)
 
 
 def print_user_board(board, coordinates, guessed):
@@ -232,10 +232,12 @@ def print_user_board(board, coordinates, guessed):
         else:
             print(str(row_number) + "|", end="")
         for i in row:
-            if i in coordinates:
-                print(" ⬤ |", end="")
-            elif i in guessed and i in coordinates:
+            if i in guessed and i in coordinates:
                 print(" ⊗ |", end="")
+            elif i in coordinates:
+                print(" ⬤ |", end="")
+            elif i in guessed:
+                print(" ~ |", end="")
             else:
                 print(" ○ |", end="")
         print("\n")
@@ -258,6 +260,8 @@ def print_cpu_board(board, coordinates, guessed):
         for i in row:
             if i in guessed and i in coordinates:
                 print(" ⊗ |", end="")
+            elif i in guessed:
+                print(" ~ |", end="")
             else:
                 print(" ○ |", end="")
         print("\n")
