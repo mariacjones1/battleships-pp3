@@ -165,7 +165,7 @@ class Ship:
                 return Ship.cpu_coordinates
 
 
-def guess_coordinates(guessed):
+def guess_coordinates(guessed, coordinates):
     """
     User guesses ship coordinates, which are checked
     against previously guessed coordinates and computer
@@ -203,21 +203,34 @@ def guess_coordinates(guessed):
             guess = ()
         else:
             guessed.append(guess)
+            if guess in coordinates:
+                print("Hit!")
+            else:
+                print("Miss!")
 
 
-def guess_random_coordinates(guessed):
+def guess_random_coordinates(guessed, coordinates):
     """
     Generates random coordinates for computer guesses and makes sure
     coordinate has not already been guessed
     """
+    number_to_letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+
     while True:
         guess_column = random.randint(0, 9)
         guess_row = random.randint(0, 9)
         guess = (guess_column, guess_row)
+        print(f"Computer guessed ({number_to_letter[guess_column]}, "
+              f"{guess_row + 1})")
         if guess in guessed:
             break
         else:
-            return guessed.append(guess)
+            guessed.append(guess)
+            if guess in coordinates:
+                print("Hit!")
+            else:
+                print("Miss!")
+            break
 
 
 def print_board(board, coordinates, guessed, correct, player):
@@ -331,14 +344,14 @@ def main():
         while winner is False:
             # User guesses
             print(Ship.cpu_coordinates)
-            guess_coordinates(user_guessed)
+            guess_coordinates(user_guessed, Ship.cpu_coordinates)
             print("Computer board:")
             print_board(board, Ship.cpu_coordinates, user_guessed,
                         user_correct, "cpu")
             print(set(user_correct))
 
             # Computer guesses
-            guess_random_coordinates(cpu_guessed)
+            guess_random_coordinates(cpu_guessed, Ship.user_coordinates)
             print(f"{username}'s board:")
             print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
                         "user")
