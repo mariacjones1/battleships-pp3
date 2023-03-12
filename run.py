@@ -349,11 +349,13 @@ def main():
 
         while winner is False:
             # User guesses
+            print(Ship.cpu_coordinates)
             guess_coordinates(user_guessed, Ship.cpu_coordinates)
             time.sleep(1)
             print("Computer board:")
             print_board(board, Ship.cpu_coordinates, user_guessed,
                         user_correct, "cpu")
+            time.sleep(1)
 
             # Computer guesses
             print("Computer guessing...")
@@ -363,6 +365,7 @@ def main():
             print(f"{username}'s board:")
             print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
                         "user")
+            time.sleep(1)
 
             # Declare winner
             if len(set(user_correct)) == 17:
@@ -377,6 +380,18 @@ def main():
         while True:
             play_again = input("Would you like to play again (Y/N)? ").upper()
             if play_again == "Y":
+                user_carrier.position = []
+                user_battleship.position = []
+                user_destroyer.position = []
+                user_submarine.position = []
+                user_patrol_boat.position = []
+                Ship.user_coordinates = []
+                cpu_carrier.position = []
+                cpu_battleship.position = []
+                cpu_destroyer.position = []
+                cpu_submarine.position = []
+                cpu_patrol_boat.position = []
+                Ship.cpu_coordinates = []
                 user_guessed = []
                 user_correct = []
                 cpu_guessed = []
