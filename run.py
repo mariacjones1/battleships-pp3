@@ -220,7 +220,7 @@ def guess_random_coordinates(guessed):
             return guessed.append(guess)
 
 
-def print_user_board(board, coordinates, guessed, correct):
+def print_board(board, coordinates, guessed, correct, player):
     """
     Prints user board showing set coordinates and
     correct computer guesses
@@ -238,33 +238,8 @@ def print_user_board(board, coordinates, guessed, correct):
             if i in guessed and i in coordinates:
                 print(" ⊗ |", end="")
                 correct.append(i)
-            elif i in coordinates:
+            elif i in coordinates and player == "user":
                 print(" ⬤ |", end="")
-            elif i in guessed:
-                print(" ~ |", end="")
-            else:
-                print(" ○ |", end="")
-        print("\n")
-        row_number += 1
-
-
-def print_cpu_board(board, coordinates, guessed, correct):
-    """
-    Prints computer board showing correct user guesses
-    """
-
-    print("  | A | B | C | D | E | F | G | H | I | J |\n"
-          "   ----------------------------------------")
-    row_number = 1
-    for row in board:
-        if row_number < 10:
-            print(str(row_number) + " |", end="")
-        else:
-            print(str(row_number) + "|", end="")
-        for i in row:
-            if i in guessed and i in coordinates:
-                print(" ⊗ |", end="")
-                correct.append(i)
             elif i in guessed:
                 print(" ~ |", end="")
             else:
@@ -322,23 +297,23 @@ def main():
                  [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9), (6, 9),
                   (7, 9), (8, 9), (9, 9)]]
         print(f"{username}'s board:")
-        print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                         cpu_correct)
+        print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                    "user")
         user_carrier.set_position()
-        print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                         cpu_correct)
+        print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                    "user")
         user_battleship.set_position()
-        print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                         cpu_correct)
+        print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                    "user")
         user_destroyer.set_position()
-        print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                         cpu_correct)
+        print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                    "user")
         user_submarine.set_position()
-        print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                         cpu_correct)
+        print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                    "user")
         user_patrol_boat.set_position()
-        print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                         cpu_correct)
+        print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                    "user")
 
         # Randomly generate computer ship positions
         cpu_carrier.random_position()
@@ -346,6 +321,8 @@ def main():
         cpu_destroyer.random_position()
         cpu_submarine.random_position()
         cpu_patrol_boat.random_position()
+        print_board(board, Ship.cpu_coordinates, user_guessed, user_correct,
+                    "cpu")
         print(Ship.cpu_coordinates)
 
         # Start gameplay
@@ -356,15 +333,15 @@ def main():
             print(Ship.cpu_coordinates)
             guess_coordinates(user_guessed)
             print("Computer board:")
-            print_cpu_board(board, Ship.cpu_coordinates, user_guessed,
-                            user_correct)
+            print_board(board, Ship.cpu_coordinates, user_guessed,
+                        user_correct, "cpu")
             print(set(user_correct))
 
             # Computer guesses
             guess_random_coordinates(cpu_guessed)
             print(f"{username}'s board:")
-            print_user_board(board, Ship.user_coordinates, cpu_guessed,
-                             cpu_correct)
+            print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
+                        "user")
 
             # Declare winner
             if len(set(user_correct)) == 17:
