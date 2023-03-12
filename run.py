@@ -174,32 +174,35 @@ def guess_coordinates(guessed):
 
     letter_to_number = {"A": 0, "B": 1, "C": 2, "D": 3, "E": 4,
                         "F": 5, "G": 6, "H": 7, "I": 8, "J": 9}
+    guess = ()
 
-    while True:
-        guess_column = input("Guess a column from A-J: ").upper()
-        if guess_column in "ABCDEFGHIJ" and len(guess_column) == 1:
-            guess_column = letter_to_number[guess_column]
-            break
-        else:
-            print("Invalid letter.")
-
-    while True:
-        try:
-            guess_row = int(input("Guess a row from 1-10: "))
-            if guess_row >= 1 and guess_row <= 10:
-                guess_row -= 1
+    while not guess:
+        while True:
+            guess_column = input("Guess a column from A-J: ").upper()
+            if guess_column in "ABCDEFGHIJ" and len(guess_column) == 1:
+                guess_column = letter_to_number[guess_column]
                 break
             else:
-                print("Invalid number.")
-        except ValueError:
-            print("Input must be a number 1-10.")
+                print("Invalid letter.")
 
-    guess = (guess_column, guess_row)
+        while True:
+            try:
+                guess_row = int(input("Guess a row from 1-10: "))
+                if guess_row >= 1 and guess_row <= 10:
+                    guess_row -= 1
+                    break
+                else:
+                    print("Invalid number.")
+            except ValueError:
+                print("Input must be a number 1-10.")
 
-    if guess in guessed:
-        print("Coordinate already guessed! Please guess again.")
-    else:
-        guessed.append(guess)
+        guess = (guess_column, guess_row)
+
+        if guess in guessed:
+            print("Coordinate already guessed! Please guess again.")
+            guess = ()
+        else:
+            guessed.append(guess)
 
 
 def guess_random_coordinates(guessed):
@@ -291,79 +294,102 @@ def main():
     start_game()
     username = create_user()
 
-    # User sets ship positions
-    user_guessed = []
-    user_correct = []
-    cpu_guessed = []
-    cpu_correct = []
-    board = [[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0), (7, 0),
-              (8, 0), (9, 0)],
-             [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1), (7, 1),
-              (8, 1), (9, 1)],
-             [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2), (7, 2),
-              (8, 2), (9, 2)],
-             [(0, 3), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3), (6, 3), (7, 3),
-              (8, 3), (9, 3)],
-             [(0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4), (7, 4),
-              (8, 4), (9, 4)],
-             [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5), (6, 5), (7, 5),
-              (8, 5), (9, 5)],
-             [(0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6), (7, 6),
-              (8, 6), (9, 6)],
-             [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7), (7, 7),
-              (8, 7), (9, 7)],
-             [(0, 8), (1, 8), (2, 8), (3, 8), (4, 8), (5, 8), (6, 8), (7, 8),
-              (8, 8), (9, 8)],
-             [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9), (6, 9), (7, 9),
-              (8, 9), (9, 9)]]
-    print(f"{username}'s board:")
-    print_user_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct)
-    user_carrier.set_position()
-    print_user_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct)
-    user_battleship.set_position()
-    print_user_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct)
-    user_destroyer.set_position()
-    print_user_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct)
-    user_submarine.set_position()
-    print_user_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct)
-    user_patrol_boat.set_position()
-    print_user_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct)
-
-    # Randomly generate computer ship positions
-    cpu_carrier.random_position()
-    cpu_battleship.random_position()
-    cpu_destroyer.random_position()
-    cpu_submarine.random_position()
-    cpu_patrol_boat.random_position()
-    print(Ship.cpu_coordinates)
-
-    # Start gameplay
-    winner = False
-
-    while winner is False:
-        # User guesses
-        print(Ship.cpu_coordinates)
-        guess_coordinates(user_guessed)
-        print("Computer board:")
-        print_cpu_board(board, Ship.cpu_coordinates, user_guessed,
-                        user_correct)
-        print(set(user_correct))
-
-        # Computer guesses
-        guess_random_coordinates(cpu_guessed)
+    # Game loop runs until user chooses to exit
+    while True:
+        # User sets ship positions
+        user_guessed = []
+        user_correct = []
+        cpu_guessed = []
+        cpu_correct = []
+        board = [[(0, 0), (1, 0), (2, 0), (3, 0), (4, 0), (5, 0), (6, 0),
+                  (7, 0), (8, 0), (9, 0)],
+                 [(0, 1), (1, 1), (2, 1), (3, 1), (4, 1), (5, 1), (6, 1),
+                  (7, 1), (8, 1), (9, 1)],
+                 [(0, 2), (1, 2), (2, 2), (3, 2), (4, 2), (5, 2), (6, 2),
+                  (7, 2), (8, 2), (9, 2)],
+                 [(0, 3), (1, 3), (2, 3), (3, 3), (4, 3), (5, 3), (6, 3),
+                  (7, 3), (8, 3), (9, 3)],
+                 [(0, 4), (1, 4), (2, 4), (3, 4), (4, 4), (5, 4), (6, 4),
+                  (7, 4), (8, 4), (9, 4)],
+                 [(0, 5), (1, 5), (2, 5), (3, 5), (4, 5), (5, 5), (6, 5),
+                  (7, 5), (8, 5), (9, 5)],
+                 [(0, 6), (1, 6), (2, 6), (3, 6), (4, 6), (5, 6), (6, 6),
+                  (7, 6), (8, 6), (9, 6)],
+                 [(0, 7), (1, 7), (2, 7), (3, 7), (4, 7), (5, 7), (6, 7),
+                  (7, 7), (8, 7), (9, 7)],
+                 [(0, 8), (1, 8), (2, 8), (3, 8), (4, 8), (5, 8), (6, 8),
+                  (7, 8), (8, 8), (9, 8)],
+                 [(0, 9), (1, 9), (2, 9), (3, 9), (4, 9), (5, 9), (6, 9),
+                  (7, 9), (8, 9), (9, 9)]]
         print(f"{username}'s board:")
         print_user_board(board, Ship.user_coordinates, cpu_guessed,
                          cpu_correct)
+        user_carrier.set_position()
+        print_user_board(board, Ship.user_coordinates, cpu_guessed,
+                         cpu_correct)
+        user_battleship.set_position()
+        print_user_board(board, Ship.user_coordinates, cpu_guessed,
+                         cpu_correct)
+        user_destroyer.set_position()
+        print_user_board(board, Ship.user_coordinates, cpu_guessed,
+                         cpu_correct)
+        user_submarine.set_position()
+        print_user_board(board, Ship.user_coordinates, cpu_guessed,
+                         cpu_correct)
+        user_patrol_boat.set_position()
+        print_user_board(board, Ship.user_coordinates, cpu_guessed,
+                         cpu_correct)
 
-        # Declare winner
-        if len(set(user_correct)) == 17:
-            print("Congratulations, you win!")
-            winner = True
-        elif len(set(cpu_correct)) == 17:
-            print("Computer wins")
-            winner = True
-        else:
-            winner = False
+        # Randomly generate computer ship positions
+        cpu_carrier.random_position()
+        cpu_battleship.random_position()
+        cpu_destroyer.random_position()
+        cpu_submarine.random_position()
+        cpu_patrol_boat.random_position()
+        print(Ship.cpu_coordinates)
+
+        # Start gameplay
+        winner = False
+
+        while winner is False:
+            # User guesses
+            print(Ship.cpu_coordinates)
+            guess_coordinates(user_guessed)
+            print("Computer board:")
+            print_cpu_board(board, Ship.cpu_coordinates, user_guessed,
+                            user_correct)
+            print(set(user_correct))
+
+            # Computer guesses
+            guess_random_coordinates(cpu_guessed)
+            print(f"{username}'s board:")
+            print_user_board(board, Ship.user_coordinates, cpu_guessed,
+                             cpu_correct)
+
+            # Declare winner
+            if len(set(user_correct)) == 17:
+                print("Congratulations, you win!")
+                winner = True
+            elif len(set(cpu_correct)) == 17:
+                print("Computer wins!")
+                winner = True
+            else:
+                winner = False
+
+        while True:
+            play_again = input("Would you like to play again (Y/N)? ").upper()
+            if play_again == "Y":
+                user_guessed = []
+                user_correct = []
+                cpu_guessed = []
+                cpu_correct = []
+                winner = False
+                break
+            elif play_again == "N":
+                print("See you soon!")
+                exit()
+            else:
+                print(f"Invalid input: {play_again}. Please type 'Y' or 'N'")
 
 
 main()
