@@ -1,4 +1,5 @@
 import random
+import time
 
 
 def start_game():
@@ -330,10 +331,16 @@ def main():
 
         # Randomly generate computer ship positions
         cpu_carrier.random_position()
+        time.sleep(2)
         cpu_battleship.random_position()
+        time.sleep(2)
         cpu_destroyer.random_position()
+        time.sleep(2)
         cpu_submarine.random_position()
+        time.sleep(2)
         cpu_patrol_boat.random_position()
+        time.sleep(2)
+        print("Computer board:")
         print_board(board, Ship.cpu_coordinates, user_guessed, user_correct,
                     "cpu")
 
@@ -343,12 +350,16 @@ def main():
         while winner is False:
             # User guesses
             guess_coordinates(user_guessed, Ship.cpu_coordinates)
+            time.sleep(1)
             print("Computer board:")
             print_board(board, Ship.cpu_coordinates, user_guessed,
                         user_correct, "cpu")
 
             # Computer guesses
+            print("Computer guessing...")
+            time.sleep(2)
             guess_random_coordinates(cpu_guessed, Ship.user_coordinates)
+            time.sleep(1)
             print(f"{username}'s board:")
             print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
                         "user")
