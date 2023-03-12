@@ -336,19 +336,16 @@ def main():
         cpu_patrol_boat.random_position()
         print_board(board, Ship.cpu_coordinates, user_guessed, user_correct,
                     "cpu")
-        print(Ship.cpu_coordinates)
 
         # Start gameplay
         winner = False
 
         while winner is False:
             # User guesses
-            print(Ship.cpu_coordinates)
             guess_coordinates(user_guessed, Ship.cpu_coordinates)
             print("Computer board:")
             print_board(board, Ship.cpu_coordinates, user_guessed,
                         user_correct, "cpu")
-            print(set(user_correct))
 
             # Computer guesses
             guess_random_coordinates(cpu_guessed, Ship.user_coordinates)
