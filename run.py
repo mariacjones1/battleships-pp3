@@ -18,13 +18,18 @@ def start_game():
     while True:
         user_start = input("Y/N\n").upper()
 
-        if user_start == "Y":
-            break
-        elif user_start == "N":
-            print("Maybe next time!")
-            exit()
-        else:
-            print(f"Invalid input: {user_start}. Please type 'Y' or 'N'")
+        try:
+            if not user_start:
+                raise ValueError
+            elif user_start == "Y":
+                break
+            elif user_start == "N":
+                print("Maybe next time!")
+                exit()
+            else:
+                print(f"Invalid input: {user_start}. Please type 'Y' or 'N'.")
+        except ValueError:
+            print("Input must not be empty.")
 
     return user_start
 
@@ -41,14 +46,16 @@ def create_user():
         username = input("Enter username: ")
 
         try:
-            if username.isalnum() is False:
+            if not username:
+                raise ValueError
+            elif username.isalnum() is False:
                 raise TypeError
             elif len(username) < 3:
                 raise ValueError
-        except TypeError:
-            print("Username should use numbers and letters only.")
         except ValueError:
             print("Username must be at least 3 characters.")
+        except TypeError:
+            print("Username should use numbers and letters only.")
         else:
             break
 
@@ -80,45 +87,61 @@ class Ship:
                   f"(length = {self.length})")
             while True:
                 column = input("Choose a column from A-J: ").upper()
-                if column in "ABCDEFGHIJ" and len(column) == 1:
-                    column = letter_to_number[column]
-                    break
-                else:
-                    print("Invalid letter.")
+                try:
+                    if not column:
+                        raise ValueError
+                    elif column in "ABCDEFGHIJ" and len(column) == 1:
+                        column = letter_to_number[column]
+                        break
+                    elif column.isalpha() is False:
+                        raise TypeError
+                    else:
+                        print("Invalid letter.")
+                except ValueError:
+                    print("Input must not be empty.")
+                except TypeError:
+                    print("Input must be a letter.")
 
             while True:
                 try:
                     row = int(input("Choose a row from 1-10: "))
-                    if row >= 1 and row <= 10:
+                    if not row:
+                        raise ValueError
+                    elif row >= 1 and row <= 10:
                         row -= 1
                         break
                     else:
                         print("Invalid number.")
                 except ValueError:
-                    print("Input must be a number 1-10.")
+                    print("Invalid input. Please type a letter from 1-10.")
 
             while True:
                 print("Now choose the ship's orientation:\n"
                       "Horizontal ('H') or vertical ('V')?")
                 self.orientation = input().upper()
-                if self.orientation == "H":
-                    if column + self.length > 10:
+                try:
+                    if not self.orientation:
+                        raise ValueError
+                    elif self.orientation == "H":
+                        if column + self.length > 10:
+                            break
+                        else:
+                            while len(self.position) < self.length:
+                                self.position.append((column, row))
+                                column += 1
+                        break
+                    elif self.orientation == "V":
+                        if row + self.length > 10:
+                            break
+                        else:
+                            while len(self.position) < self.length:
+                                self.position.append((column, row))
+                                row += 1
                         break
                     else:
-                        while len(self.position) < self.length:
-                            self.position.append((column, row))
-                            column += 1
-                    break
-                elif self.orientation == "V":
-                    if row + self.length > 10:
-                        break
-                    else:
-                        while len(self.position) < self.length:
-                            self.position.append((column, row))
-                            row += 1
-                    break
-                else:
-                    print("Please input only 'H' or 'V' for orientation")
+                        print("Please input only 'H' or 'V' for orientation.")
+                except ValueError:
+                    print("Input must not be empty.")
 
             if (len(Ship.user_coordinates + self.position) !=
                     len(set(Ship.user_coordinates + self.position))):
@@ -180,16 +203,23 @@ def guess_coordinates(guessed, coordinates):
     while not guess:
         while True:
             guess_column = input("Guess a column from A-J: ").upper()
-            if guess_column in "ABCDEFGHIJ" and len(guess_column) == 1:
-                guess_column = letter_to_number[guess_column]
-                break
-            else:
-                print("Invalid letter.")
+            try:
+                if not guess_column:
+                    raise ValueError
+                elif guess_column in "ABCDEFGHIJ" and len(guess_column) == 1:
+                    guess_column = letter_to_number[guess_column]
+                    break
+                else:
+                    print("Invalid letter.")
+            except ValueError:
+                print("Input must not be empty.")
 
         while True:
             try:
                 guess_row = int(input("Guess a row from 1-10: "))
-                if guess_row >= 1 and guess_row <= 10:
+                if not guess_row:
+                    raise ValueError
+                elif guess_row >= 1 and guess_row <= 10:
                     guess_row -= 1
                     break
                 else:
