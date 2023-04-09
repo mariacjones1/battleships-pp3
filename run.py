@@ -457,7 +457,6 @@ def main():
 
         while winner is False:
             # User guesses
-            print(Ship.cpu_coordinates)
             guess_coordinates(user_guessed, Ship.cpu_coordinates)
             time.sleep(1)
             print("Computer board:")
