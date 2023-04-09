@@ -12,10 +12,10 @@ def start_game():
     """
     # Welcome message
     print("Welcome to Battleships!\n"
-          "The aim of the game is to find and sink your opponent's"
+          "The aim of the game is to find and sink your opponent's "
           "battleships before they sink yours.\n"
-          "Choose the location for each of your ships, while the computer"
-          "generates random positions, then take it in turns to guess"
+          "Choose the location for each of your ships, while the computer "
+          "generates random positions, then take it in turns to guess "
           "where each other's ships are.\n"
           "Ready to play?")
 
@@ -367,6 +367,7 @@ def print_board(board, coordinates, guessed, correct, player):
         print("\n")
         row_number += 1
 
+
 # Creates user ships
 user_carrier = Ship("Carrier", 5)
 user_battleship = Ship("Battleship", 4)
@@ -513,7 +514,8 @@ def main():
                     print("See you soon!")
                     exit()  # Exit game if user decides not to play again
                 else:
-                    print(f"Invalid input: {play_again}. Please type 'Y' or 'N'")
+                    print(f"Invalid input: {play_again}."
+                          "Please type 'Y' or 'N'.")
             except ValueError:
                 print("Input must not be empty.")
 
