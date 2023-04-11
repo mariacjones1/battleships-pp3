@@ -34,7 +34,51 @@
 <hr>
 
 ## Features
+- User instructions upon loading
+    - Instructions are already loaded so user can read them immediately and at their own speed before proceeding.
+    - User can then input 'Y' or 'N' to either start the game or exit the app (also accepts 'y' or 'n').
 
+![Instructions](documentation/features/instructions.png)
+
+- Username
+    - User must input a username to play the game.
+    - Username must be minimum 3 characters and only contain alphanumeric characters.
+    - Username is then used to label each print of the user's board.
+
+![Username](documentation/features/username.png)
+![Username and board](documentation/features/username-and-board.png)
+
+- Board
+    - Board size is 10 by 10 to match classic board size.
+    - Columns are labelled with the corresponding letter and rows are labelled with the corresponding number so the user can easily see the coordinate for each position.
+    - A-J and 1-10 are used instead of 0-9 for both columns and rows to match classic game coordinates and to be more intuitive for the user.
+    - For each row number 1-9, there is a space between the number and the first '|' to make sure the board is aligned.
+
+![Empty board](documentation/features/empty-board.png)
+
+- Ships
+    - Ship names and lengths are based on the 2002 Hasbro version of battleships, as listed on [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)).
+
+- Set coordinates
+    - User sets the coordinates of each ship by entering the column and row for the first coordinate, then choosing the direction of the ship (horizontal or vertical).
+    - The program will accept both uppercase and lowercase letters for the column selection.
+    - The user will be told which ship they are positioning, and how long that ship is.
+    - An updated user board will print to show the positioned ship.
+
+![Set coordinates](documentation/features/set-coordinates.png)
+
+- Generate computer coordinates
+    - Computer randomly generates coordinates for each ship.
+    - 'Setting computer coordinates for [ship name]...' is printed to the console for each ship set by the computer.
+    - Sleep function is used between each one to give the impression that the computer is 'thinking' about each ship placement.
+    - A blank computer board is then printed to show that no user guesses have yet been made.
+
+![Generate coordinates](documentation/features/generate-coordinates.png)
+
+- Guess coordinate
+
+
+- Declare winner
 
 <hr>
 
