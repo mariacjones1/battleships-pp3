@@ -304,28 +304,32 @@ def guess_random_coordinates(guessed, coordinates):
     guessed: Contains coordinates which have already been guessed.
     coordinates: Contains set ship coordinates.
     """
+    # Converts randomly generated number to corresponding column letter
     number_to_letter = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"]
+    guess = ()  # Starts with empty guess
 
-    while True:
-        # Randomly guesses coordinates
-        guess_column = random.randint(0, 9)
-        guess_row = random.randint(0, 9)
-        guess = (guess_column, guess_row)
-        # Checks if coordinate has already been guessed
-        if guess in guessed:
-            break
-        else:
-            # Prints computer guess
-            print(f"Computer guessed ({number_to_letter[guess_column]}, "
-                  f"{guess_row + 1})")
-            # Adds guess to guessed array
-            guessed.append(guess)
-            # Checks if guess is a hit or a miss
-            if guess in coordinates:
-                print("Hit!")
+    while not guess:
+        while True:
+            # Randomly guesses coordinates
+            guess_column = random.randint(0, 9)
+            guess_row = random.randint(0, 9)
+            guess = (guess_column, guess_row)
+            # Checks if coordinate has already been guessed
+            if guess in guessed:
+                print("Duplicate guess")
+                guess = ()
             else:
-                print("Miss!")
-            break
+                # Prints computer guess
+                print(f"Computer guessed ({number_to_letter[guess_column]}, "
+                      f"{guess_row + 1})")
+                # Adds guess to guessed array
+                guessed.append(guess)
+                # Checks if guess is a hit or a miss
+                if guess in coordinates:
+                    print("Hit!")
+                else:
+                    print("Miss!")
+                break
 
 
 def print_board(board, coordinates, guessed, correct, player):
