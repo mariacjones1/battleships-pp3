@@ -316,7 +316,6 @@ def guess_random_coordinates(guessed, coordinates):
             guess = (guess_column, guess_row)
             # Checks if coordinate has already been guessed
             if guess in guessed:
-                print("Duplicate guess")
                 guess = ()
             else:
                 # Prints computer guess
