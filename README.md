@@ -103,6 +103,16 @@ Updated user board with guessed coordinates and remaining ships:
 
 
 - Declare winner
+    - Checks after each turn if all ships have been fully uncovered. If so, the winner is declared.
+    - Gives the user the option to either play again, or exit.
+
+User wins:
+
+![User wins](documentation/features/user-wins.png)
+
+Computer wins:
+
+![Computer wins](documentation/features/computer-wins.png)
 
 <hr>
 
