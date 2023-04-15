@@ -460,6 +460,7 @@ def main():
 
         while winner is False:
             # User guesses
+            print(Ship.cpu_coordinates)
             guess_coordinates(user_guessed, Ship.cpu_coordinates)
             time.sleep(1)
             print("Computer board:")
@@ -472,24 +473,22 @@ def main():
                 print("Congratulations, you win!")
                 winner = True
             else:
-                winner = False
+                # Computer guesses
+                print("Computer guessing...")
+                time.sleep(2)
+                guess_random_coordinates(cpu_guessed, Ship.user_coordinates)
+                time.sleep(1)
+                print(f"{username}'s board:")
+                print_board(board, Ship.user_coordinates, cpu_guessed,
+                            cpu_correct, "user")
+                time.sleep(1)
 
-            # Computer guesses
-            print("Computer guessing...")
-            time.sleep(2)
-            guess_random_coordinates(cpu_guessed, Ship.user_coordinates)
-            time.sleep(1)
-            print(f"{username}'s board:")
-            print_board(board, Ship.user_coordinates, cpu_guessed, cpu_correct,
-                        "user")
-            time.sleep(1)
-
-            # Check if computer has won
-            if len(set(cpu_correct)) == 17:
-                print("Computer wins!")
-                winner = True
-            else:
-                winner = False
+                # Check if computer has won
+                if len(set(cpu_correct)) == 17:
+                    print("Computer wins!")
+                    winner = True
+                else:
+                    winner = False
 
         # Ask if user wants to play again and reset all position arrays
         while True:
