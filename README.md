@@ -150,6 +150,11 @@ Computer wins:
 | Guess column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input |  |
 | Guess row: empty input, non-numeric input, input < 1, input > 10, valid input |  |
 
+### Validator testing
+- PEP8
+    - No bugs or problems found when passed through PEP8 linter:
+    ![PEP8](documentation/testing/pep8.png)
+
 <hr>
 
 ## Future improvements
