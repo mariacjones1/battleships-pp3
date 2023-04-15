@@ -125,7 +125,13 @@ Computer wins:
 <hr>
 
 ## Deployment
-
+This app was deployed using Heroku:
+1. Fork or clone this repository.
+2. Create and name a new app on Heroku (name must be unique), and select your region (Europe or United States).
+3. Go to settings, and add a new Config Var (key = PORT, value = 8000).
+4. Add python and nodejs buildpacks (make sure they are in this order).
+5. Go to deploy, select Github and link this repository.
+6. Optionally enable automatic deploys, and click Deploy Branch to manually deploy the app.
 
 <hr>
 
