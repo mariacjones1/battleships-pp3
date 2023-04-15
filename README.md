@@ -1,5 +1,9 @@
 # Battleships
+Battleships is a game coded in Python, which runs in the Code Institute Heroku mock terminal, in which the user competes with the computer to find all their ships first.
 
+The game is played on a ten-by-ten board, with five ships of length 2-5 squares (based on the classic board game). The user sets the positions for each of their ships, while the computer randomly generates theirs, before they take turn guessing coordinates to try to find the other's ships first and win the game.
+
+Final app: [https://battleships-mj.herokuapp.com/](https://battleships-mj.herokuapp.com/)
 
 <hr>
 
