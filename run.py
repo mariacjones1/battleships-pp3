@@ -467,6 +467,13 @@ def main():
                         user_correct, "cpu")
             time.sleep(1)
 
+            # Check if user has won
+            if len(set(user_correct)) == 17:
+                print("Congratulations, you win!")
+                winner = True
+            else:
+                winner = False
+
             # Computer guesses
             print("Computer guessing...")
             time.sleep(2)
@@ -477,11 +484,8 @@ def main():
                         "user")
             time.sleep(1)
 
-            # Declare winner
-            if len(set(user_correct)) == 17:
-                print("Congratulations, you win!")
-                winner = True
-            elif len(set(cpu_correct)) == 17:
+            # Check if computer has won
+            if len(set(cpu_correct)) == 17:
                 print("Computer wins!")
                 winner = True
             else:
