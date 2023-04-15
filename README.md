@@ -148,13 +148,13 @@ This app was deployed using Heroku:
 
 | Input | Results |
 | --- | --- |
-| Start game: empty input, invalid non-empty input, valid input |  |
-| Enter username: empty input, input < 3 characters, non-alphanumeric input, valid input |  |
-| Set column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input |  |
-| Set row: empty input, non-numeric input, input < 1, input > 10, valid input |  |
-| Set orientation: empty input, invalid non-empty input, valid input |  |
-| Guess column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input |  |
-| Guess row: empty input, non-numeric input, input < 1, input > 10, valid input |  |
+| Start game: empty input, invalid non-empty input, valid input | ![Start game input validation](documentation/testing/input-validation/start-game.png) |
+| Enter username: empty input, input < 3 characters, non-alphanumeric input, valid input | ![Enter username input validation](documentation/testing/input-validation/enter-username.png) |
+| Set column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input | ![Set column input validation](documentation/testing/input-validation/set-column.png) |
+| Set row: empty input, non-numeric input, input < 1, input > 10, valid input | ![Set row input validation](documentation/testing/input-validation/set-column.png) |
+| Set orientation: empty input, invalid non-empty input, valid input | ![Set orientation input validation](documentation/testing/input-validation/set-orientation.png) |
+| Guess column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input | ![Guess column input validation](documentation/testing/input-validation/guess-column.png) |
+| Guess row: empty input, non-numeric input, input < 1, input > 10, valid input | ![Guess row input validation](documentation/testing/input-validation/guess-row.png) |
 
 ### Validator testing
 - PEP8

@@ -112,7 +112,7 @@ class Ship:
                   f"(length = {self.length})")
             while True:
                 # Convert input to uppercase
-                column = input("Choose a column from A-J:\n").upper()
+                column = input("Choose a column from A-J: ").upper()
                 try:
                     if not column:
                         raise ValueError  # Checks for empty value
@@ -136,7 +136,7 @@ class Ship:
             while True:
                 try:
                     # Make sure input is an integer
-                    row = int(input("Choose a row from 1-10:\n"))
+                    row = int(input("Choose a row from 1-10: "))
                     if not row:
                         raise ValueError  # Checks for empty value
                     elif row >= 1 and row <= 10:
@@ -253,7 +253,7 @@ def guess_coordinates(guessed, coordinates):
 
     while not guess:
         while True:
-            guess_column = input("Guess a column from A-J:\n").upper()
+            guess_column = input("Guess a column from A-J: ").upper()
             try:
                 if not guess_column:
                     raise ValueError  # Checks for empty input
@@ -275,7 +275,7 @@ def guess_coordinates(guessed, coordinates):
 
         while True:
             try:
-                guess_row = int(input("Guess a row from 1-10:\n"))
+                guess_row = int(input("Guess a row from 1-10: "))
                 if not guess_row:
                     raise ValueError  # Checks for empty input
                 elif guess_row >= 1 and guess_row <= 10:
