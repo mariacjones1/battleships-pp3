@@ -9,6 +9,7 @@ Final app: [https://battleships-mj.herokuapp.com/](https://battleships-mj.heroku
 
 ## Table of contents
 
+- [How to play](#how-to-play)
 - [User goals](#user-goals)
 - [Owner goals](#owner-goals)
 - [Features](#features)
@@ -17,6 +18,19 @@ Final app: [https://battleships-mj.herokuapp.com/](https://battleships-mj.heroku
 - [Testing](#testing)
 - [Future improvements](#future-improvements)
 - [Credits](#credits)
+
+<hr>
+
+## How to play
+The user enters their name and selects the positions for each ship, and the computer randomly generates positions for each of theirs.
+The user and computer take turns to guess a coordinate, and a new board is printed each time.
+Key:
+○ --> Unguessed coordinate
+⊗ --> Correctly guessed coordinate
+~ --> Incorrectly guessed coordinate
+⬤ --> Unguessed coordinate where ship is positioned (user board only)
+
+The first to guess all ship coordinates wins the game.
 
 <hr>
 
