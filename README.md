@@ -132,7 +132,9 @@ Computer wins:
 <hr>
 
 ## Future improvements
-
+1. Set different computer difficulties and give the user the option to select - i.e., a harder difficulty will have the computer guesses based on previous correct guesses, and an easier difficulty might have a smaller board.
+2. Give the user the option to either play against a second person instead of the computer.
+3. On a bigger window, the boards could be printed side-by-side to reduce the need for scrolling up to look at the boards.
 
 <hr>
 
