@@ -261,10 +261,17 @@ def guess_coordinates(guessed, coordinates):
                     # Converts valid input to number
                     guess_column = letter_to_number[guess_column]
                     break
+                elif guess_column.isalpha() is False:
+                    raise TypeError  # Checks input type is alpha
+                elif len(guess_column) != 1:
+                    # Checks input is only 1 letter
+                    print("Input should only be one letter.")
                 else:
                     print("Invalid letter.")
             except ValueError:
                 print("Input must not be empty.")
+            except TypeError:
+                print("Input must be a letter.")
 
         while True:
             try:
@@ -460,7 +467,6 @@ def main():
 
         while winner is False:
             # User guesses
-            print(Ship.cpu_coordinates)
             guess_coordinates(user_guessed, Ship.cpu_coordinates)
             time.sleep(1)
             print("Computer board:")
