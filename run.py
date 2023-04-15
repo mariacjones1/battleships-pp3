@@ -197,9 +197,9 @@ class Ship:
         Generates random positions for each ship.
 
         Uses random to set coordinates and orientation.
-        Checks each ship fits on the board and dores not overlap
+        Checks each ship fits on the board and does not overlap
         with another ship - restarts the loop to generate new coordinates
-        if ship doesn;t fit.
+        if ship doesn't fit.
         """
         orientation = ["H", "V"]
         print(f"Setting computer coordinates for {self.name}...")

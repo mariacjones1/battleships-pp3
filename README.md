@@ -138,6 +138,18 @@ Computer wins:
 | When the computer guesses a coordinate that has already been guessed, its turn ends without guessing again: ![Computer turn ends without a guess](documentation/testing/computer-turn-ends-without-guess.png) | Added a loop to run the computer guess function until a valid coordinate is generated, and reset the guess if it has already been guessed so a new coordinate is generated each turn: ![Computer guesses new coordinate](documentation/testing/computer-guesses-new-coordinate.png) |
 | If the user wins, they are declared the winner but the game continues: ![User wins but game continues](documentation/testing/user-wins-game-continues.png) | Put the computer turn inside the 'else' of the 'if...else' statement checking if the user has won: ![User wins and game ends](documentation/testing/user-wins.png) |
 
+### Input validation
+
+| Input | Results |
+| --- | --- |
+| Start game: empty input, invalid non-empty input, valid input |  |
+| Enter username: empty input, input < 3 characters, non-alphanumeric input, valid input |  |
+| Set column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input |  |
+| Set row: empty input, non-numeric input, input < 1, input > 10, valid input |  |
+| Set orientation: empty input, invalid non-empty input, valid input |  |
+| Guess column: empty input, non-alpha input, input > 1 character, letter outside of accepted values, valid input |  |
+| Guess row: empty input, non-numeric input, input < 1, input > 10, valid input |  |
+
 <hr>
 
 ## Future improvements
