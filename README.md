@@ -63,7 +63,7 @@
     - User sets the coordinates of each ship by entering the column and row for the first coordinate, then choosing the direction of the ship (horizontal or vertical).
     - The program will accept both uppercase and lowercase letters for the column selection.
     - The user will be told which ship they are positioning, and how long that ship is.
-    - An updated user board will print to show the positioned ship.
+    - An updated user board will print to show the positioned ships.
 
 ![Set coordinates](documentation/features/set-coordinates.png)
 
@@ -76,6 +76,30 @@
 ![Generate coordinates](documentation/features/generate-coordinates.png)
 
 - Guess coordinate
+    - User inputs column letter and row number to guess coordinate.
+    - Computer randomly generates numbers from 0-9 to guess column and row numbers. These will be converted to a letter and number coordinate and printed.
+    - Program checks if coordinate has already been guessed (in which case the user will guess again or the computer will generate a new coordinate, as applicable), and if the coordinate is a hit or a miss.
+    - An updated board prints showing all guessed coordinates, which different symbols depending on whether they hit a ship or not. The user board with computer guesses will also show unguessed ship coordinates.
+
+User guess:
+
+![User guess](documentation/features/guess-coordinate.png)
+
+User guesses duplicate coordinate:
+
+![User guesses duplicate coordinate](documentation/features/guess-coordinate-already-guessed.png)
+
+Compuer guess:
+
+![Computer guess](documentation/features/computer-guess-coordinate.png)
+
+Updated computer board with guessed coordinates:
+
+![Updated computer board with guessed coordinates](documentation/features/computer-board-with-guesses.png)
+
+Updated user board with guessed coordinates and remaining ships:
+
+![Updated user board with guessed coordinates and remaining ships](documentation/features/user-board-with-guesses.png)
 
 
 - Declare winner
