@@ -14,9 +14,9 @@ Final app: [https://battleships-mj.herokuapp.com/](https://battleships-mj.heroku
 - [Owner goals](#owner-goals)
 - [Features](#features)
 - [Style choices](#style-choices)
-- [Deployment](#deployment)
-- [Testing](#testing)
 - [Future improvements](#future-improvements)
+- [Testing](#testing)
+- [Deployment](#deployment)
 - [Credits](#credits)
 
 <hr>
@@ -120,7 +120,6 @@ Updated user board with guessed coordinates and remaining ships:
 
 ![Updated user board with guessed coordinates and remaining ships](documentation/features/user-board-with-guesses.png)
 
-
 - Declare winner
     - Checks after each turn if all ships have been fully uncovered. If so, the winner is declared.
     - Gives the user the option to either play again, or exit.
@@ -142,14 +141,10 @@ Computer wins:
 
 <hr>
 
-## Deployment
-This app was deployed using Heroku:
-1. Fork or clone this repository.
-2. Create and name a new app on Heroku (name must be unique), and select your region (Europe or United States).
-3. Go to settings, and add a new Config Var (key = PORT, value = 8000).
-4. Add python and nodejs buildpacks (make sure they are in this order).
-5. Go to deploy, select Github and link this repository.
-6. Optionally enable automatic deploys, and click Deploy Branch to manually deploy the app.
+## Future improvements
+1. Set different computer difficulties and give the user the option to select - i.e., a harder difficulty will have the computer guesses based on previous correct guesses, and an easier difficulty might have a smaller board.
+2. Give the user the option to either play against a second person instead of the computer.
+3. On a bigger window, the boards could be printed side-by-side to reduce the need for scrolling up to look at the boards.
 
 <hr>
 
@@ -161,6 +156,9 @@ This app was deployed using Heroku:
 | Instruction text at start of game is missing spaces and has line breaks in the middle of words (see yellow highlights): ![Deployed code with incorrect spacing and line breaks](documentation/testing/text-line-length.png) | Added missing spaces (no need to add line breaks as extra spaces pushed start of split words onto a new line): ![Deployed code with correct spacing and line breaks](documentation/testing/text-line-length-fixed.png) |
 | When the computer guesses a coordinate that has already been guessed, its turn ends without guessing again: ![Computer turn ends without a guess](documentation/testing/computer-turn-ends-without-guess.png) | Added a loop to run the computer guess function until a valid coordinate is generated, and reset the guess if it has already been guessed so a new coordinate is generated each turn: ![Computer guesses new coordinate](documentation/testing/computer-guesses-new-coordinate.png) |
 | If the user wins, they are declared the winner but the game continues: ![User wins but game continues](documentation/testing/user-wins-game-continues.png) | Put the computer turn inside the 'else' of the 'if...else' statement checking if the user has won: ![User wins and game ends](documentation/testing/user-wins.png) |
+
+### Remaining bugs
+None
 
 ### Input validation
 
@@ -181,11 +179,18 @@ This app was deployed using Heroku:
 
 <hr>
 
-## Future improvements
-1. Set different computer difficulties and give the user the option to select - i.e., a harder difficulty will have the computer guesses based on previous correct guesses, and an easier difficulty might have a smaller board.
-2. Give the user the option to either play against a second person instead of the computer.
-3. On a bigger window, the boards could be printed side-by-side to reduce the need for scrolling up to look at the boards.
+## Deployment
+This app was deployed using Heroku:
+1. Fork or clone this repository.
+2. Create and name a new app on Heroku (name must be unique), and select your region (Europe or United States).
+3. Go to settings, and add a new Config Var (key = PORT, value = 8000).
+4. Add python and nodejs buildpacks (make sure they are in this order).
+5. Go to deploy, select Github and link this repository.
+6. Optionally enable automatic deploys, and click Deploy Branch to manually deploy the app.
 
 <hr>
 
 ## Credits
+- Code Institute gitpod template and Heroku deployment terminal.
+- Wikipedia for information on classics battleships game.
+- Can Sucullu as my mentor.
