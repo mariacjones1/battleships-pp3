@@ -128,6 +128,7 @@ Computer wins:
 | --- | --- |
 | Instruction text at start of game is missing spaces and has line breaks in the middle of words (see yellow highlights): ![Deployed code with incorrect spacing and line breaks](documentation/testing/text-line-length.png) | Added missing spaces (no need to add line breaks as extra spaces pushed start of split words onto a new line): ![Deployed code with correct spacing and line breaks](documentation/testing/text-line-length-fixed.png) |
 | When the computer guesses a coordinate that has already been guessed, its turn ends without guessing again: ![Computer turn ends without a guess](documentation/testing/computer-turn-ends-without-guess.png) | Added a loop to run the computer guess function until a valid coordinate is generated, and reset the guess if it has already been guessed so a new coordinate is generated each turn: ![Computer guesses new coordinate](documentation/testing/computer-guesses-new-coordinate.png) |
+| If the user wins, they are declared the winner but the game continues: ![User wins but game continues](documentation/testing/user-wins-game-continues.png) | Put the computer turn inside the 'else' of the 'if...else' statement checking if the user has won. |
 
 <hr>
 
