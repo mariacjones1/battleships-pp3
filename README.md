@@ -22,12 +22,18 @@ Final app: [https://battleships-mj.herokuapp.com/](https://battleships-mj.heroku
 <hr>
 
 ## How to play
-The user enters their name and selects the positions for each ship, and the computer randomly generates positions for each of theirs.
+The user enters their name and selects the position for each ship, and the computer randomly generates positions for each of theirs.
+
 The user and computer take turns to guess a coordinate, and a new board is printed each time.
+
 Key:
+
 ○ --> Unguessed coordinate
+
 ⊗ --> Correctly guessed coordinate
+
 ~ --> Incorrectly guessed coordinate
+
 ⬤ --> Unguessed coordinate where ship is positioned (user board only)
 
 The first to guess all ship coordinates wins the game.
@@ -82,12 +88,13 @@ The first to guess all ship coordinates wins the game.
     - User sets the coordinates of each ship by entering the column and row for the first coordinate, then choosing the direction of the ship (horizontal or vertical).
     - The program will accept both uppercase and lowercase letters for the column selection.
     - The user will be told which ship they are positioning, and how long that ship is.
+    - The program will check to make sure the ship fits on the board, and does not overlap with any other ships. Otherwise, the user will need to specify new coordinates.
     - An updated user board will print to show the positioned ships.
 
 ![Set coordinates](documentation/features/set-coordinates.png)
 
 - Generate computer coordinates
-    - Computer randomly generates coordinates for each ship.
+    - Computer randomly generates coordinates for each ship. The program makes sure all ships fit on the board and do not overlap with each other.
     - 'Setting computer coordinates for [ship name]...' is printed to the console for each ship set by the computer.
     - Sleep function is used between each one to give the impression that the computer is 'thinking' about each ship placement.
     - A blank computer board is then printed to show that no user guesses have yet been made.

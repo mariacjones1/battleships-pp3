@@ -51,7 +51,7 @@ def create_user():
 
     # Ask for username
     while True:
-        username = input("Enter username:\n")
+        username = input("Enter username: ")
 
         try:
             if not username:
