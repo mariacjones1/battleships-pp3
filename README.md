@@ -10,6 +10,7 @@ Final app: [https://battleships-mj.herokuapp.com/](https://battleships-mj.heroku
 ## Table of contents
 
 - [How to play](#how-to-play)
+- [Code](#code)
 - [User goals](#user-goals)
 - [Owner goals](#owner-goals)
 - [Features](#features)
@@ -37,6 +38,13 @@ Key:
 ⬤ --> Unguessed coordinate where ship is positioned (user board only)
 
 The first to guess all ship coordinates wins the game.
+
+<hr>
+
+## Code
+- Ship class was used to set and store the position of each ship for the user and the computer. It has methods to set the positions manually (user) and generate positions randomly (computer).
+- Random library was imported to generate random coordinates for the computer to set ship positions, and to generate random coordinates for the computer to make guesses.
+- Time library was imported to make it seem like the computer 'thinks' about each position and guess, improving the game experience for the user, and to make it easier for the user to read each line before a new one appears without feeling rushed.
 
 <hr>
 
